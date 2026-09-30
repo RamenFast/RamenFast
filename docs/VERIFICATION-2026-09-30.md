@@ -33,7 +33,15 @@ station-tree links README.md \
 git diff --check
 ```
 
-The final content commit carries the local check receipt. Approved publication uses a standard push, never a force push. Remote equality and actual profile HTML are checked afterward and recorded in a closing receipt commit.
+## Profile completed and published
+
+Content commit `0bba690` was pushed normally to `origin main`. At **09:31 UTC**, fetch confirmed local and remote main equal, with a clean worktree. Public raw README returned HTTP 200 and matched local bytes exactly.
+
+README SHA-256: `b32355f9f082ba21ff4769d04a7f29c361d9099183c33c12f4ec526f1ae3123c`.
+
+The actual `https://github.com/RamenFast` profile returned HTTP 200. Its rendered HTML contained The instruments, The living home, A dated photograph, the field-guide link and the repo-local banner. It contained no Vercel stats-image URL. The published banner returned HTTP 200 and matched local asset bytes.
+
+The profile deliverables are complete. This closing receipt commit changes no README content. No force push was used.
 
 ## Limits
 
