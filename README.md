@@ -9,7 +9,6 @@
   <a href="https://github.com/RamenFast/phosphor">Phosphor</a> ·
   <a href="https://github.com/RamenFast/phosphor-mobil3">Phosphor Mobile</a> ·
   <a href="https://github.com/RamenFast/sysmon">SysMon</a> ·
-  <a href="https://github.com/RamenFast/cartograph">Cartograph</a> ·
   <a href="https://github.com/RamenFast/concourse">Concourse</a> ·
   <a href="https://github.com/RamenFast/intercom">Intercom</a>
 </p>
@@ -25,7 +24,6 @@ Every tool here follows one rule: a human gets a real GUI, an agent gets a JSON 
 | **[phosphor](https://github.com/RamenFast/phosphor)** | CRT-style XY oscilloscope for desktop audio. GPU beam, P7 phosphor physics, 11 display modes, drives Spotify from the transport. | Rust · wgpu · PipeWire |
 | **[phosphor-mobil3](https://github.com/RamenFast/phosphor-mobil3)** | The same beam engine in your pocket. Playback capture, mic, Tailscale relay to the PC. Stable line. [Dev line →](https://github.com/RamenFast/phosphor-mobil3-dev) | Kotlin · Compose · Rust |
 | **[sysmon](https://github.com/RamenFast/sysmon)** | Compact system monitor for AMD-GPU Linux. Live cards, pop-out windows, six themes, control socket. | Rust · egui |
-| **[cartograph](https://github.com/RamenFast/cartograph)** | A living map of your machine's network. Every process and who it's talking to, by real name. | Zig · eBPF · GTK4 |
 | **[concourse](https://github.com/RamenFast/concourse)** | The station's shared hall. One registry of every tool, one hub where human and agents see the same estate. | Rust · egui |
 | **[intercom](https://github.com/RamenFast/intercom)** | Local two-way voice. piper TTS + whisper.cpp STT, CPU one-shots, pipelines into the local LLM. | Rust |
 
