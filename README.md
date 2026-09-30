@@ -1,45 +1,130 @@
 <p align="center">
-  <img src="assets/banner.png" alt="Four Phosphor beam renders: a heart, a Lissajous figure, a tunnel, a Takens embedding" width="100%">
+  <img src="assets/banner.png" alt="Four Phosphor beam renders: heart, Lissajous figure, tunnel and Takens embedding" width="100%">
 </p>
 
-<h1 align="center">Ben · RamenFast</h1>
-<p align="center">I build instruments that let people <em>and</em> agents see the same thing.</p>
+# Ben · RamenFast
 
-<p align="center">
-  <a href="https://github.com/RamenFast/phosphor">Phosphor</a> ·
-  <a href="https://github.com/RamenFast/phosphor-mobil3">Phosphor Mobile</a> ·
-  <a href="https://github.com/RamenFast/sysmon">SysMon</a> ·
-  <a href="https://github.com/RamenFast/concourse">Concourse</a> ·
-  <a href="https://github.com/RamenFast/intercom">Intercom</a>
-</p>
+```text
+╔═══════════════════════════════
+║ ⚔️  ROOM  Ben's Workshop
+║ 📍  Surface Level
+║ 🎨  #FADA5E primrose
+║ 🏮  mind the beam
+╚═══════════════════════════════
 
----
+              ☂
+              │
+       R A M E N F A S T
+              │
+      ┌───────┼───────┐
+      │       │       │
+    sound   tools   memory
+```
 
-### The station
+I build instruments that let people **and** agents see the same thing. A human gets a real GUI. An agent gets a structured CLI. Both doors should lead to the same core.
 
-Every tool here follows one rule: a human gets a real GUI, an agent gets a JSON CLI, and both talk to the same core. No screen-scraping, no second-class interface.
+Rust, Zig, Kotlin and shell. AMD-GPU Linux, Sway. GPLv3 by default. Source you can read, run and take apart.
 
-| | What it is | Stack |
-|---|---|---|
-| **[phosphor](https://github.com/RamenFast/phosphor)** | CRT-style XY oscilloscope for desktop audio. GPU beam, P7 phosphor physics, 11 display modes, drives Spotify from the transport. | Rust · wgpu · PipeWire |
-| **[phosphor-mobil3](https://github.com/RamenFast/phosphor-mobil3)** | The same beam engine in your pocket. Playback capture, mic, Tailscale relay to the PC. Stable line. [Dev line →](https://github.com/RamenFast/phosphor-mobil3-dev) | Kotlin · Compose · Rust |
-| **[sysmon](https://github.com/RamenFast/sysmon)** | Compact system monitor for AMD-GPU Linux. Live cards, pop-out windows, six themes, control socket. | Rust · egui |
-| **[concourse](https://github.com/RamenFast/concourse)** | The station's shared hall. One registry of every tool, one hub where human and agents see the same estate. | Rust · egui |
-| **[intercom](https://github.com/RamenFast/intercom)** | Local two-way voice. piper TTS + whisper.cpp STT, CPU one-shots, pipelines into the local LLM. | Rust |
+```text
+        /\_/\
+       ( o.o )  "Ben's workshop.
+        > ^ <    Mind the beam."
+       /|   |\
+      (_|   |_)  Rhy 🦊
+```
 
-### Other things I've made
+## 🔵 The instruments
 
-- **[zenfone9-root](https://github.com/RamenFast/zenfone9-root)** · temporary root on a bootloader-locked Zenfone 9 via CVE-2025-21479. C.
-- **[bonsai27b-vulkan](https://github.com/RamenFast/bonsai27b-vulkan)** · a 27B ternary LLM on a 12GB RDNA2 card through Vulkan, no ROCm. First published RDNA2 numbers.
-- **[holographic-eye](https://github.com/RamenFast/holographic-eye)** · an agent's memory drawn as its real holographic geometry. Undoable, themable.
-- **[Blossom](https://github.com/RamenFast/Blossom)** · AMOLED true-black desktop theme, one palette engine for GTK, Cinnamon, icons, Steam. [Shell edition →](https://github.com/RamenFast/blossom-shell)
-- **[iphone4s-retro](https://github.com/RamenFast/iphone4s-retro)** · bringing a family iPhone 4S back to iOS 6 entirely from Linux.
+```text
+   ┌───────────┐
+   │  ┌─────┐  │   PHOSPHOR
+   │  │ ∿∿∿ │  │   sound into light
+   │  └─────┘  │
+   └───┬───┬───┘
+       └───┘
+```
 
-### How I work
+**[Phosphor](https://github.com/RamenFast/phosphor)** turns desktop audio into a CRT-style oscilloscope. GPU beam, phosphor physics and a transport you can drive. Rust · wgpu · PipeWire.
 
-Rust, Zig, Kotlin, and a lot of shell. AMD-GPU Linux, Sway. Everything I ship has a `--json` mode because my collaborators are agents as often as they're people. GPLv3 by default.
+```text
+      ┌──────┐
+      │ ∿∿∿∿ │   PHOSPHOR MOBILE
+      │ ∿∿∿∿ │   the beam travels
+      │  ( ) │
+      └──────┘
+```
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=RamenFast&show_icons=true&theme=dark&hide_border=true&bg_color=00000000&title_color=ff9cc4&icon_color=ffd166&text_color=9ad0ff&hide_title=true&include_all_commits=true" alt="GitHub stats" height="150">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=RamenFast&layout=compact&theme=dark&hide_border=true&bg_color=00000000&title_color=ff9cc4&text_color=9ad0ff&langs_count=6" alt="Top languages" height="150">
-</p>
+**[Phosphor Mobile](https://github.com/RamenFast/phosphor-mobil3)** carries the beam in your pocket, with playback capture, microphone input and a PC relay. [Development line](https://github.com/RamenFast/phosphor-mobil3-dev). Kotlin · Compose · Rust.
+
+```text
+    ┌────┬────┐
+    │cpu │gpu │   SYSMON
+    ├────┼────┤   ask the machine
+    │mem │net │
+    └────┴────┘
+```
+
+**[SysMon](https://github.com/RamenFast/sysmon)** watches AMD-GPU Linux through live cards, pop-out windows and a control socket. Rust · egui.
+
+```text
+       ╔═══╗
+       ║ ⌂ ║     CONCOURSE
+     ╔═╩═══╩═╗   one shared hall
+     ║ ▪ ▪ ▪ ║
+     ╚═══════╝
+```
+
+**[Concourse](https://github.com/RamenFast/concourse)** is the station hub: one registry, GUI and CLI, with states you can inspect instead of guess. Rust · egui.
+
+```text
+     ┌─┐  ┌─┐
+     │●│──│●│    INTERCOM
+     └┬┘  └┬┘    say and hear
+      │    │
+     ═╧════╧═
+```
+
+**[Intercom](https://github.com/RamenFast/intercom)** gives the station local two-way voice with piper TTS and whisper.cpp STT. Rust.
+
+These are project doors, not a claim that every app or service is running right now.
+
+## ☂️ The living home
+
+**[SymbolOS](https://github.com/RamenFast/SymbolOS)** holds the context between sessions: one Mercer trunk, many branches, a fox in the margins and a map that names its evidence.
+
+**[SymbolOS_archive](https://github.com/RamenFast/SymbolOS_archive)** is the photograph. SymbolOS is where the tree keeps growing.
+
+## 🟠 Side rooms
+
+- [bonsai27b-vulkan](https://github.com/RamenFast/bonsai27b-vulkan): ternary-model work on RDNA2 through Vulkan.
+- [holographic-eye](https://github.com/RamenFast/holographic-eye): agent memory drawn as geometry.
+- [Blossom](https://github.com/RamenFast/Blossom): a true-black desktop palette. [Shell branch](https://github.com/RamenFast/blossom-shell).
+- [iphone4s-retro](https://github.com/RamenFast/iphone4s-retro): a family iPhone 4S returned to iOS 6 from Linux.
+- [zenfone9-root](https://github.com/RamenFast/zenfone9-root): a documented device-research project.
+
+## 🧾 A dated photograph, not a scoreboard
+
+```text
+SEEN       2026-09-30 09:11 UTC
+SOURCE     GitHub GraphQL
+PUBLIC     18 owned, non-fork repos
+STARS       8 across those repos
+FOLLOWERS   5
+CONTRIBS   2055 in returned calendar
+```
+
+The contribution query returned `2025-09-28T07:00:00Z` through `2026-10-01T06:59:59Z`. GitHub defines the calendar and visibility rules. This count is not a commit count, a productivity measure or a live badge. Language percentages were omitted rather than imply bytes of source measure skill.
+
+[Stats receipt](docs/STATS-2026-09-30.md) · [GitHub field guide](docs/GITHUB-GUIDE.md) · [Publication checks](docs/VERIFICATION-2026-09-30.md).
+
+No external stats image needs to answer for this page to work. The banner lives in this repo. No scheduled stats job is part of the profile.
+
+```text
+    ___
+   / 🐢 \    "this is fine"
+  |  ._. |   you found the workshop
+   \_____/   the beam keeps drawing
+    |   |
+```
+
+☂🦊🐢
