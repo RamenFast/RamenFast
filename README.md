@@ -1,130 +1,64 @@
 <p align="center">
-  <img src="assets/banner.png" alt="Four Phosphor beam renders: heart, Lissajous figure, tunnel and Takens embedding" width="100%">
+  <img src="assets/banner.png" alt="Audio drawn in light by Phosphor: a heart, a Lissajous figure, a tunnel and a Takens embedding" width="100%">
 </p>
 
-# Ben · RamenFast
+# Ben / RamenFast
+
+**Sound into light. Tools you can talk to.**
+
+I build on Linux, mostly in Rust, Zig and Kotlin. I like instruments you can explore with your hands, and interfaces an agent can use without guessing at pixels.
 
 ```text
-╔═══════════════════════════════
-║ ⚔️  ROOM  Ben's Workshop
-║ 📍  Surface Level
-║ 🎨  #FADA5E primrose
-║ 🏮  mind the beam
-╚═══════════════════════════════
-
-              ☂
-              │
-       R A M E N F A S T
-              │
-      ┌───────┼───────┐
-      │       │       │
-    sound   tools   memory
+       ☂
+       │   ONE TREE
+   ┌───┼───┐
+   │   │   │
+ sound tools context
 ```
 
-I build instruments that let people **and** agents see the same thing. A human gets a real GUI. An agent gets a structured CLI. Both doors should lead to the same core.
+### The beam
 
-Rust, Zig, Kotlin and shell. AMD-GPU Linux, Sway. GPLv3 by default. Source you can read, run and take apart.
+**[Phosphor](https://github.com/RamenFast/phosphor)**
+
+A CRT-style oscilloscope for desktop audio. Waveforms, geometry and glowing phosphor, built in Rust.
+
+**[Phosphor Mobile](https://github.com/RamenFast/phosphor-mobil3)**
+
+The beam on Android. The stable source has its own home; the **[dev workshop](https://github.com/RamenFast/phosphor-mobil3-dev)** is for experiments and contributions.
+
+### The workshop
+
+- **[SysMon](https://github.com/RamenFast/sysmon)** · A compact Linux system monitor with a human interface and a machine-readable one.
+- **[Concourse](https://github.com/RamenFast/concourse)** · One hall for the station's tools, with a shared GUI and CLI.
+- **[Intercom](https://github.com/RamenFast/intercom)** · Local speech and listening through Piper and whisper.cpp.
+- **[Holographic Eye](https://github.com/RamenFast/holographic-eye)** · An agent's memory, drawn as geometry.
+
+### The lantern
+
+**[SymbolOS](https://github.com/RamenFast/SymbolOS)** is where the context grows between projects and sessions: shared symbols, reading paths, characters and a map of the station.
+
+Mercer carries the lantern. Rhy asks the awkward question. The turtle keeps us honest about the next small step.
 
 ```text
-        /\_/\
-       ( o.o )  "Ben's workshop.
-        > ^ <    Mind the beam."
-       /|   |\
-      (_|   |_)  Rhy 🦊
+   /\_/\
+  ( o.o )  "What belongs here?"
+   > ^ <       Rhy
 ```
 
-## 🔵 The instruments
+The **[archive](https://github.com/RamenFast/SymbolOS_archive)** keeps the photograph. The living tree is being reread and curated, file by file. It is a practice in progress, not a finished operating system.
 
-```text
-   ┌───────────┐
-   │  ┌─────┐  │   PHOSPHOR
-   │  │ ∿∿∿ │  │   sound into light
-   │  └─────┘  │
-   └───┬───┬───┘
-       └───┘
-```
+<details>
+<summary>Other doors</summary>
 
-**[Phosphor](https://github.com/RamenFast/phosphor)** turns desktop audio into a CRT-style oscilloscope. GPU beam, phosphor physics and a transport you can drive. Rust · wgpu · PipeWire.
+- **[Bonsai 27B / Vulkan](https://github.com/RamenFast/bonsai27b-vulkan)** · Ternary-model experiments on AMD RDNA2.
+- **[Blossom](https://github.com/RamenFast/Blossom)** · A true-black desktop theme. **[Shell companion](https://github.com/RamenFast/blossom-shell)**.
+- **[iPhone 4S retro](https://github.com/RamenFast/iphone4s-retro)** · Notes on restoring a family phone as a Linux-managed retro player.
+- **[Zenfone 9 research](https://github.com/RamenFast/zenfone9-root)** · Device research and documentation.
 
-```text
-      ┌──────┐
-      │ ∿∿∿∿ │   PHOSPHOR MOBILE
-      │ ∿∿∿∿ │   the beam travels
-      │  ( ) │
-      └──────┘
-```
+</details>
 
-**[Phosphor Mobile](https://github.com/RamenFast/phosphor-mobil3)** carries the beam in your pocket, with playback capture, microphone input and a PC relay. [Development line](https://github.com/RamenFast/phosphor-mobil3-dev). Kotlin · Compose · Rust.
+---
 
-```text
-    ┌────┬────┐
-    │cpu │gpu │   SYSMON
-    ├────┼────┤   ask the machine
-    │mem │net │
-    └────┴────┘
-```
+GPLv3 by default. Read the source, try things, bring a useful question.
 
-**[SysMon](https://github.com/RamenFast/sysmon)** watches AMD-GPU Linux through live cards, pop-out windows and a control socket. Rust · egui.
-
-```text
-       ╔═══╗
-       ║ ⌂ ║     CONCOURSE
-     ╔═╩═══╩═╗   one shared hall
-     ║ ▪ ▪ ▪ ║
-     ╚═══════╝
-```
-
-**[Concourse](https://github.com/RamenFast/concourse)** is the station hub: one registry, GUI and CLI, with states you can inspect instead of guess. Rust · egui.
-
-```text
-     ┌─┐  ┌─┐
-     │●│──│●│    INTERCOM
-     └┬┘  └┬┘    say and hear
-      │    │
-     ═╧════╧═
-```
-
-**[Intercom](https://github.com/RamenFast/intercom)** gives the station local two-way voice with piper TTS and whisper.cpp STT. Rust.
-
-These are project doors, not a claim that every app or service is running right now.
-
-## ☂️ The living home
-
-**[SymbolOS](https://github.com/RamenFast/SymbolOS)** holds the context between sessions: one Mercer trunk, many branches, a fox in the margins and a map that names its evidence.
-
-**[SymbolOS_archive](https://github.com/RamenFast/SymbolOS_archive)** is the photograph. SymbolOS is where the tree keeps growing.
-
-## 🟠 Side rooms
-
-- [bonsai27b-vulkan](https://github.com/RamenFast/bonsai27b-vulkan): ternary-model work on RDNA2 through Vulkan.
-- [holographic-eye](https://github.com/RamenFast/holographic-eye): agent memory drawn as geometry.
-- [Blossom](https://github.com/RamenFast/Blossom): a true-black desktop palette. [Shell branch](https://github.com/RamenFast/blossom-shell).
-- [iphone4s-retro](https://github.com/RamenFast/iphone4s-retro): a family iPhone 4S returned to iOS 6 from Linux.
-- [zenfone9-root](https://github.com/RamenFast/zenfone9-root): a documented device-research project.
-
-## 🧾 A dated photograph, not a scoreboard
-
-```text
-SEEN       2026-09-30 09:11 UTC
-SOURCE     GitHub GraphQL
-PUBLIC     18 owned, non-fork repos
-STARS       8 across those repos
-FOLLOWERS   5
-CONTRIBS   2055 in returned calendar
-```
-
-The contribution query returned `2025-09-28T07:00:00Z` through `2026-10-01T06:59:59Z`. GitHub defines the calendar and visibility rules. This count is not a commit count, a productivity measure or a live badge. Language percentages were omitted rather than imply bytes of source measure skill.
-
-[Stats receipt](docs/STATS-2026-09-30.md) · [GitHub field guide](docs/GITHUB-GUIDE.md) · [Publication checks](docs/VERIFICATION-2026-09-30.md).
-
-No external stats image needs to answer for this page to work. The banner lives in this repo. No scheduled stats job is part of the profile.
-
-```text
-    ___
-   / 🐢 \    "this is fine"
-  |  ._. |   you found the workshop
-   \_____/   the beam keeps drawing
-    |   |
-```
-
-☂🦊🐢
+[GitHub field guide](docs/GITHUB-GUIDE.md) · [SymbolOS reading paths](https://github.com/RamenFast/SymbolOS/blob/main/docs/reading_order.md)
