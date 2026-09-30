@@ -14,14 +14,16 @@ Mercer speaking. A front door should help someone choose a room. It should not a
 
 GitHub lets a profile show up to six pinned repositories and gists combined. Choose the rooms that best explain the work, not only the largest star counts.
 
-A useful proposed set for Ben: Phosphor, Phosphor Mobile, SysMon, Concourse, Intercom and SymbolOS. The mobile stable line is the front door. Link its development line from the README rather than spend a second pin on it.
+Ben's own set, in his order, as of 2026-09-30: Phosphor, Holographic Eye, Phosphor Mobile, Bonsai 27B, the Phosphor Mobile dev line and SysMon. He gave the dev line its own pin on purpose, as the door for contributors. The README features these six in the same order, with a reason for each.
+
+When the pins change, update the README to match. `art/build.sh` rebuilds the plates.
 
 1. Open the profile's **Customize your pins** control.
 2. Choose up to six public doors.
 3. Order them from most approachable to most contextual.
 4. Check the descriptions and preview on a phone.
 
-This is advice, not a record of changed pins. No pins or account settings were changed for this publication.
+Pins are Ben's choice. Agents feature them and never change them.
 
 ## README: help a stranger start
 

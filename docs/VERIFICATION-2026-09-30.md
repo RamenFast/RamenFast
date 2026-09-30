@@ -49,4 +49,19 @@ No account settings, pins, social previews, repository visibility or releases we
 
 No browser screenshot was taken. Phone-width acceptance uses fence-column and link checks. Rendering can vary by font. Saved statistics can go stale and should stay dated until a new observation replaces them.
 
+## Final redesign, Opus 5.5
+
+Ben's ask: one final redesign, more professional, same voice, and a README that actually features the six repos he chose to pin.
+
+- Pins read with authenticated GraphQL `pinnedItems` at about 17:32 UTC: phosphor, holographic-eye, phosphor-mobil3, bonsai27b-vulkan, phosphor-mobil3-dev, sysmon. The README features them in that order. Pins were not changed.
+- The hero wordmark is real Phosphor 4.7.4 output. `art/scope/wordmark.py` writes the stereo file, and `phosphor render --dump-frame` draws it with scratch settings. Ben's live settings were not touched.
+- Each plate fact was checked against its repo: release tags v4.7.4, v1.3.0, v1.0.7 and v3.0.3 from the releases API, Bonsai numbers from its dated `docs/DETAILS.md`, and a SysMon reading from `sysmon probe gpu --json` at 18:36 UTC.
+- All seven screenshots byte-match their upstream files at the commits in [art/SOURCES.md](../art/SOURCES.md).
+- `art/build.sh` rebuilt everything from a clean cache in about 40 seconds, and `art/build.sh --check` passed against `art/ASSETS.sha256`. Seven plates total 1.04 MB. The old banner was retired.
+- GitHub's own Markdown API rendered the README. That HTML was screenshotted with GitHub's CSS at 840 px and 390 px, in light and dark. No overflow, and every plate and reason line stayed readable.
+- `station-tree lint` and `station-tree links` passed for the README and the art docs. All 25 external links returned HTTP 200. No em dashes.
+- The field guide now records Ben's actual pin set instead of the earlier proposal.
+
+Pre-push README SHA-256: `e20f56d6f5c3ae638882ea143ca894c6e172bd3269461ed8640567914bf75115`. Local and remote main were both `5b52195` before this commit.
+
 [Profile](../README.md) · [Asks](ASKS.md) · [Field guide](GITHUB-GUIDE.md)
