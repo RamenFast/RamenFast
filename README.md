@@ -10,8 +10,6 @@
 
 The name above is a two-second stereo file, [`ramenfast.wav`](assets/ramenfast.wav), drawn by [phosphor](https://github.com/RamenFast/phosphor).
 
-## 📌 Pinned
-
 <a href="https://github.com/RamenFast/phosphor"><img src="assets/01-phosphor.jpg" width="100%" alt="Pin 01, phosphor. Rust, wgpu, PipeWire. A GPU oscilloscope for everything your PC plays. P7 beam, mix apps, drive Spotify, agent CLI. Beside it, the app tracing a track in XY mode."></a>
 
 🔭 [phosphor](https://github.com/RamenFast/phosphor) · 📦 [releases](https://github.com/RamenFast/phosphor/releases) · 🎨 [drawn by sound](https://github.com/RamenFast/phosphor#drawn-by-sound) · 🤖 [agents](https://github.com/RamenFast/phosphor/blob/master/docs/AGENTS.md)
