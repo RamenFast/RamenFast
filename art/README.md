@@ -6,7 +6,6 @@ Every image on the [profile](../README.md) is built here, with one command:
 art/build.sh
 ```
 
-- `--live` takes a fresh SysMon reading first.
 - `--check` verifies `assets/` against `ASSETS.sha256`.
 
 Output lines are NDJSON events. Errors print a JSON object with a `fix`. Exit codes are 0 ok, 2 missing tool, 4 build failure.
@@ -23,10 +22,10 @@ Play [`assets/ramenfast.wav`](../assets/ramenfast.wav) through any XY oscillosco
 
 ## Needs
 
-Python 3, Phosphor 4.7 or later, Thorium or another Chromium (`BROWSER_BIN`), ImageMagick, `jq`, and the Inter and JetBrains Mono fonts. `--live` also needs SysMon.
+Python 3, Phosphor 4.7 or later, Thorium or another Chromium (`BROWSER_BIN`), ImageMagick, and the Inter and JetBrains Mono fonts.
 
 ## Inputs
 
 - Screenshots are the pinned repos' own images. [SOURCES.md](SOURCES.md) lists each one by repo, path and commit.
-- Plate facts come from each repo's README and release list. Bonsai numbers come from its [measurements](https://github.com/RamenFast/bonsai27b-vulkan/blob/main/docs/DETAILS.md), dated 2026-07-15.
-- The SysMon plate shows [`plates/sysmon-gpu.json`](plates/sysmon-gpu.json), a real `sysmon probe gpu --json` reading, trimmed to five fields and dated.
+- Plate titles are the real repo names. Taglines are each repo's own words from its README or description.
+- Plates carry no version numbers or dated readings, so they stay true as the projects move. Keep it that way.

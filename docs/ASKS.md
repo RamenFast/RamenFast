@@ -19,3 +19,14 @@ Acceptance evidence: [publication receipt](VERIFICATION-2026-09-30.md), [stats s
 - Pins, apps and other repositories were not changed. Screenshots were copied from the pinned repos, not edited.
 
 Acceptance evidence: [final redesign receipt](VERIFICATION-2026-09-30.md#final-redesign-opus-55) and [art pipeline](../art/README.md).
+
+## Tightening pass, 2026-10-01
+
+- Real repo names everywhere, including `zenfone9-root`. Done: plate titles, hero strip, emoji rows and lists use the GitHub names.
+- Remove the "Every image here rebuilds" footer line. Done.
+- Replace "Why it's pinned" and similar phrases with emojis, move keywords onto the plates, tighten. Done: each plate has a keyword row, and each pin gets one emoji link row.
+- Keep the "Ben · RamenFast" block. Done, with the new bio as its main line.
+- Set the GitHub bio to "Eyes that see and ears that hear, for agents and people alike. Senior vibe systems architect (Google)". Done through the API. The previous bio is recorded in the receipt.
+- Remove specific version information from the images so they do not go stale. Done: no release tags, dates or live readings on any plate.
+
+Acceptance evidence: [tightening receipt](VERIFICATION-2026-09-30.md#tightening-pass-2026-10-01).

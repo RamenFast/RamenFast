@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Build the profile hero and six pin plates as HTML, in Ben's pin order.
 
-Every fact on a plate comes from the pinned repo's README, its release
-list, or a recorded CLI reading (sysmon-gpu.json). Screenshots are the
-repos' own, listed in art/SOURCES.md.
+Titles are the real repo names. Taglines are each repo's own words,
+from its README or description. Keyword rows carry what the repo does.
+Plates hold no version numbers or dated measurements, so they stay true
+as the projects move. Screenshots are the repos' own, listed in
+art/SOURCES.md.
 usage: ART_WORK=DIR plates.py   (reads DIR/img, writes DIR/html/*.html)
 """
 import json
@@ -13,8 +15,6 @@ import pathlib
 WORK = pathlib.Path(os.environ["ART_WORK"])
 OUT = WORK / "html"
 OUT.mkdir(exist_ok=True)
-GPU = json.loads((WORK / "sysmon-gpu.json").read_text())
-GPU_DATE = GPU["read_at"][:10]
 
 BASE_CSS = """
 *{box-sizing:border-box;margin:0;padding:0}
@@ -31,27 +31,24 @@ body{font-family:Inter,sans-serif;color:#f1edf1;-webkit-font-smoothing:antialias
 .tick{position:absolute;width:14px;height:14px;border-color:var(--accent);border-style:solid;opacity:.9}
 .tl{left:14px;top:14px;border-width:2px 0 0 2px}.tr{right:14px;top:14px;border-width:2px 2px 0 0}
 .bl{left:14px;bottom:14px;border-width:0 0 2px 2px}.br{right:14px;bottom:14px;border-width:0 2px 2px 0}
-.text{position:absolute;left:64px;top:52px;width:660px;bottom:48px;display:flex;flex-direction:column}
+.text{position:absolute;left:64px;top:52px;width:680px;bottom:52px;display:flex;flex-direction:column}
 .eyebrow{display:flex;align-items:center;gap:18px;font:600 21px/1 'JetBrains Mono',monospace;
   letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
 .eyebrow .sig{width:64px;height:64px;margin:-8px 0 -8px -6px}
 .eyebrow .rule{flex:0 0 40px;height:1px;background:var(--accent);opacity:.6}
 .eyebrow .stack{color:rgba(241,237,241,.55);letter-spacing:.1em}
-h1{font:750 86px/1 Inter,sans-serif;letter-spacing:-.025em;margin-top:34px;white-space:nowrap}
-.tag{font:400 31px/1.32 Inter,sans-serif;color:rgba(241,237,241,.76);margin-top:20px;max-width:640px}
-.meta{margin-top:auto;font:500 20px/1 'JetBrains Mono',monospace;letter-spacing:.06em;
-  color:rgba(241,237,241,.5);display:flex;gap:14px;align-items:center}
-.meta b{color:var(--accent);font-weight:600}
-.media{position:absolute;right:48px;top:44px;bottom:44px;left:780px;display:flex;gap:20px;
+h1{font:750 var(--title,86px)/1 Inter,sans-serif;letter-spacing:-.025em;margin-top:34px;white-space:nowrap}
+.tag{font:400 31px/1.32 Inter,sans-serif;color:rgba(241,237,241,.78);margin-top:20px;max-width:660px}
+.keys{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);
+  font:500 21px/1.5 'JetBrains Mono',monospace;letter-spacing:.03em;color:var(--accent)}
+.keys i{font-style:normal;color:rgba(241,237,241,.35);padding:0 .45em}
+.media{position:absolute;right:48px;top:44px;bottom:44px;left:800px;display:flex;gap:20px;
   justify-content:flex-end;align-items:stretch}
 .shot{position:relative;border:1px solid var(--line-strong);background:#000;overflow:hidden;
   box-shadow:0 0 0 1px rgba(0,0,0,.6),0 30px 80px -30px var(--halo)}
 .shot img{display:block;width:100%;height:100%;object-fit:cover}
-.shot .cap{position:absolute;left:0;bottom:0;padding:7px 12px;background:rgba(0,0,0,.72);
-  font:500 16px/1 'JetBrains Mono',monospace;letter-spacing:.06em;color:rgba(241,237,241,.72);
-  border-top:1px solid var(--line);border-right:1px solid var(--line)}
-.panel{border:1px solid var(--line-strong);background:rgba(0,0,0,.55);padding:26px 30px;
-  font:500 21px/1.55 'JetBrains Mono',monospace;color:rgba(241,237,241,.82)}
+.panel{border:1px solid var(--line-strong);background:rgba(0,0,0,.55);padding:30px 34px;
+  font:500 22px/1.7 'JetBrains Mono',monospace;color:rgba(241,237,241,.82);align-self:center}
 .panel .k{color:rgba(241,237,241,.45)}
 .panel .a{color:var(--accent)}
 """
@@ -64,80 +61,74 @@ def theme(r, g, b):
             f"--bg:rgb({round(4 + r * .018)},{round(5 + g * .018)},{round(7 + b * .018)})")
 
 
-def plate(n, accent, stack, name, tag, meta, media):
+def plate(n, accent, stack, name, tag, keys, media, title=86):
     sig = f"../img/sig{n}.png"
+    chips = "<i>·</i>".join(keys)
     return f"""<!doctype html><html><head><meta charset="utf-8"><style>{BASE_CSS}</style></head>
-<body><div class="plate" style="{theme(*accent)}">
+<body><div class="plate" style="{theme(*accent)};--title:{title}px">
 <div class="glow"></div><div class="grid"></div><div class="frame"></div>
 <div class="tick tl"></div><div class="tick tr"></div><div class="tick bl"></div><div class="tick br"></div>
 <div class="text">
   <div class="eyebrow"><img class="sig" src="{sig}"><span>Pin 0{n}</span><span class="rule"></span><span class="stack">{stack}</span></div>
   <h1>{name}</h1>
   <p class="tag">{tag}</p>
-  <div class="meta">{meta}</div>
+  <div class="keys">{chips}</div>
 </div>
 <div class="media">{media}</div>
 </div></body></html>"""
 
 
-def shot(src, width, pos="center", cap=None):
-    c = f'<span class="cap">{cap}</span>' if cap else ""
+def shot(src, width, pos="center"):
     return (f'<div class="shot" style="width:{width}px"><img src="../img/{src}" '
-            f'style="object-position:{pos}">{c}</div>')
+            f'style="object-position:{pos}"></div>')
 
 
+# Titles: repo names. Taglines: the repo's own words (README or description).
 PLATES = [
     dict(slug="01-phosphor", accent=(107, 255, 140), stack="Rust · wgpu · PipeWire",
-         name="Phosphor",
-         tag="A GPU oscilloscope for everything your PC plays. Stereo in, light out.",
-         meta="<b>v4.7.4</b><span>.deb · .rpm · GPLv3</span>",
-         media=shot("ph-inuse.png", 740, "50% 30%", "live · XY · Attack Vector")),
+         name="phosphor",
+         tag="A GPU oscilloscope for everything your PC plays.",
+         keys=["P7 beam", "mix apps", "drive Spotify", "agent CLI"],
+         media=shot("ph-inuse.png", 720, "50% 30%")),
     dict(slug="02-holographic-eye", accent=(231, 138, 166), stack="Rust · Tauri · Zig/WASM",
-         name="Holographic Eye",
-         tag="An agent's memory drawn as its real geometry. Journaled, undoable, yours.",
-         meta="<b>v1.3.0</b><span>.deb · .rpm · GPLv3</span>",
-         media=shot("he-hero.png", 740, "30% 40%", "synthetic demo data")),
-    dict(slug="03-phosphor-mobile", accent=(89, 191, 255), stack="Kotlin · Compose · Rust",
-         name="Phosphor Mobile",
-         tag="The same beam engine in your pocket. 120&nbsp;Hz, edge to edge.",
-         meta="<b>v1.0.7</b><span>signed APK · SHA256SUMS</span>",
-         media=shot("pm-live.png", 300, "50% 50%", "kaleido · live")
-         + shot("pm-dense.png", 300, "50% 50%", "kaleido · dense")),
+         name="holographic-eye", title=76,
+         tag="Glass cockpit for the Hermes holographic memory.",
+         keys=["real HRR geometry", "journaled", "undoable", "themable"],
+         media=shot("he-hero.png", 720, "30% 40%")),
+    dict(slug="03-phosphor-mobil3", accent=(89, 191, 255), stack="Kotlin · Compose · Rust",
+         name="phosphor-mobil3", title=78,
+         tag="A CRT oscilloscope in your pocket.",
+         keys=["120 Hz", "playback capture", "signed APK", "no tracking"],
+         media=shot("pm-live.png", 290, "50% 50%") + shot("pm-dense.png", 290, "50% 50%")),
     dict(slug="04-bonsai27b-vulkan", accent=(255, 158, 31), stack="Vulkan · llama.cpp · RDNA2",
-         name="Bonsai 27B",
-         tag="A 27B model on a 12 GB AMD card through plain Vulkan. No ROCm.",
-         meta="<b>measured</b><span>RX 6750 XT · Mesa RADV · 2026-07-15</span>",
-         media="""<div class="panel" style="width:740px">
-<div><span class="k">model  </span> Ternary-Bonsai-27B</div>
-<div><span class="k">weights</span> <span class="a">1.71</span> bits/weight · 7.17 GB</div>
-<div><span class="k">decode </span> <span class="a">25–40</span> tok/s</div>
-<div><span class="k">needle </span> <span class="a">5/5</span> at 43.5K tokens deep</div>
-<div><span class="k">window </span> <span class="a">262K</span> native, KV spills to RAM</div>
-<div style="margin-top:18px"><span class="k">vram   </span> 11.1 / 12 GB at 64K + vision</div>
-<div style="margin-top:10px;height:14px;border:1px solid var(--line-strong);position:relative">
-<div style="position:absolute;inset:2px auto 2px 2px;width:calc(92.5% - 4px);background:var(--accent);opacity:.85"></div></div>
+         name="bonsai27b-vulkan", title=74,
+         tag="Ternary Bonsai-27B on a 12&nbsp;GB AMD card via Vulkan. No ROCm.",
+         keys=["1.71 bpw", "262K context", "receipts"],
+         media="""<div class="panel" style="width:700px">
+<div><span class="a">$</span> ./install.sh</div>
+<div class="k">  deps check → fork build →</div>
+<div class="k">  model download → GPU smoke test</div>
+<div style="margin-top:14px"><span class="a">$</span> ./run.sh</div>
+<div class="k">  OpenAI-compatible API + web UI</div>
+<div class="k">  → http://127.0.0.1:8080</div>
 </div>"""),
-    dict(slug="05-phosphor-mobile-dev", accent=(255, 92, 92), stack="Kotlin · Rust · Tailscale",
-         name="Mobile, dev line",
-         tag="The open workbench. Features land, break and get fixed here first.",
-         meta="<b>open</b><span>Discussions · CONTRIBUTING</span>",
-         media=shot("pd-bestiary.png", 300, "50% 22%", "manual · the bestiary")
-         + shot("pd-deck.png", 300, "50% 78%", "deck · remote PC")),
+    dict(slug="05-phosphor-mobil3-dev", accent=(255, 92, 92), stack="Kotlin · Rust · Tailscale",
+         name="phosphor-mobil3-dev", title=66,
+         tag="The experiment line. Features land here first, break here first, and get fixed here first.",
+         keys=["PC relay", "geometry FX", "open Discussions"],
+         media=shot("pd-bestiary.png", 290, "50% 22%") + shot("pd-deck.png", 290, "50% 78%")),
     dict(slug="06-sysmon", accent=(51, 255, 235), stack="Rust · egui · JSON API",
-         name="SysMon",
-         tag="A compact monitor for AMD-GPU Linux. Every number is one command away.",
-         meta="<b>v3.0.3</b><span>.deb · .rpm · GPLv3</span>",
-         media=f"""<div class="panel" style="width:430px;font-size:19px;line-height:1.6;align-self:center">
-<div class="a">$ sysmon probe gpu --json</div>
-<div class="k"># read {GPU_DATE}, 5 fields</div>
-<div>&#123;</div>
-<div>&nbsp; <span class="k">"busy_percent":</span> {GPU['busy_percent']},</div>
-<div>&nbsp; <span class="k">"power_draw_watts":</span> {GPU['power_draw_watts']:g},</div>
-<div>&nbsp; <span class="k">"power_cap_watts":</span> {GPU['power_cap_watts']:g},</div>
-<div>&nbsp; <span class="k">"fan_rpm":</span> {GPU['fan_rpm']},</div>
-<div>&nbsp; <span class="k">"core_clock_mhz":</span> {GPU['core_clock_mhz']:g}</div>
-<div>&#125;</div>
-</div>""" + shot("sm-overview.png", 290, "50% 0%", "overview")),
+         name="sysmon",
+         tag="A compact system monitor for AMD-GPU Linux desktops, and a system state API you can script against.",
+         keys=["probe", "tap", "ctl", "schema"],
+         media="""<div class="panel" style="width:430px;font-size:21px">
+<div><span class="a">$</span> sysmon probe gpu</div>
+<div><span class="a">$</span> sysmon tap network</div>
+<div><span class="a">$</span> sysmon ctl &lt;verb&gt;</div>
+<div><span class="a">$</span> sysmon schema</div>
+<div class="k" style="margin-top:12px">one binary: window,</div>
+<div class="k">engine, CLI, socket</div>
+</div>""" + shot("sm-overview.png", 270, "50% 0%")),
 ]
 
 for p in PLATES:
@@ -147,7 +138,8 @@ for p in PLATES:
     print(json.dumps({"event": "plate", "slug": slug}))
 
 # Hero: the Phosphor-traced wordmark, then the six pin figures as an index.
-labels = ["Phosphor", "Holographic Eye", "Phosphor Mobile", "Bonsai 27B", "Mobile dev", "SysMon"]
+labels = ["phosphor", "holographic-eye", "phosphor-mobil3", "bonsai27b-vulkan",
+          "phosphor-mobil3-dev", "sysmon"]
 index = "".join(
     f'<div class="ix"><img src="../img/sig{i}.png"><span>0{i}</span><em>{labels[i - 1]}</em></div>'
     for i in range(1, 7))
@@ -166,7 +158,7 @@ body{{font-family:Inter,sans-serif;color:#f1edf1}}
 .ix:last-child{{border-right:0}}
 .ix img{{width:78px;height:78px}}
 .ix span{{font:600 16px/1 'JetBrains Mono',monospace;letter-spacing:.16em;color:rgba(241,237,241,.45)}}
-.ix em{{font:500 19px/1 Inter,sans-serif;font-style:normal;color:rgba(241,237,241,.82)}}
+.ix em{{font:500 18px/1 'JetBrains Mono',monospace;font-style:normal;color:rgba(241,237,241,.82)}}
 </style></head><body>
 <div class="band"></div><div class="fade"></div>
 <div class="cap">traced by phosphor · left channel = x · right channel = y</div>

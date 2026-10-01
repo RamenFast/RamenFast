@@ -64,4 +64,11 @@ Ben's ask: one final redesign, more professional, same voice, and a README that 
 
 Pre-push README SHA-256: `e20f56d6f5c3ae638882ea143ca894c6e172bd3269461ed8640567914bf75115`. Local and remote main were both `5b52195` before this commit.
 
+## Tightening pass, 2026-10-01
+
+- Bio set with `PATCH /user` and read back exactly. Previous bio, for a revert: "Instruments for people and agents: CRT oscilloscopes, station tools, a contextual OS. Rust · Zig · Kotlin 🎼".
+- Plates rebuilt with repo names as titles and each repo's own words as taglines. Release tags, the dated Bonsai panel and the dated SysMon reading were removed. `art/plates/sysmon-gpu.json` is gone.
+- `art/build.sh` now waits for each screenshot file and then stops that browser. A full build takes about 12 seconds, with no browsers left running. `--check` passed.
+- README: the "why" paragraphs became one emoji link row per pin. The build footer line was removed. Every repo is named as it is on GitHub.
+
 [Profile](../README.md) · [Asks](ASKS.md) · [Field guide](GITHUB-GUIDE.md)

@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # Rebuild every image on the profile from source.
 #
-#   art/build.sh           rebuild everything from recorded inputs
-#   art/build.sh --live    same, but take a fresh `sysmon probe gpu` reading first
+#   art/build.sh           rebuild everything
 #   art/build.sh --check   verify committed assets match art/ASSETS.sha256
 #
 # Pipeline:
@@ -37,15 +36,6 @@ if [[ "${1:-}" == "--check" ]]; then
   exit 0
 fi
 
-if [[ "${1:-}" == "--live" ]]; then
-  command -v sysmon >/dev/null || fail "sysmon not on PATH" "install SysMon from github.com/RamenFast/sysmon/releases, or drop --live" 2
-  sysmon probe gpu --json \
-    | jq '{read_at: .ts} + (.result.gpu | {busy_percent,power_draw_watts,power_cap_watts,fan_rpm,core_clock_mhz})' \
-    > "$art/plates/sysmon-gpu.json" \
-    || fail "sysmon probe gpu failed" "run: sysmon probe gpu --json and read its fix" 4
-  emit reading '"file":"art/plates/sysmon-gpu.json"'
-fi
-
 # Render one WAV through Phosphor with a private settings file.
 # usage: scope IN.wav OUT_BASENAME WxH FRAME SETTINGS_JSON
 scope() {
@@ -62,15 +52,26 @@ scope() {
 
 # Screenshot one HTML file with a private headless browser.
 # Old headless loses 121 px of the window to chrome. Ask for extra, crop back.
+# Headless writes the PNG, then lingers. Wait for the file, then stop it.
 shot() {
   local raw="$2.raw.png"
   rm -f "$2" "$raw"
-  timeout 20 "$browser" --headless --disable-gpu --no-first-run --disable-sync \
+  timeout 90 "$browser" --headless --disable-gpu --no-first-run --disable-sync \
     --disable-extensions --disable-background-networking --disable-component-update \
     --user-data-dir="$work/browser-$(basename "$2" .png)" --hide-scrollbars \
     --force-device-scale-factor=1 --virtual-time-budget=4000 \
     --window-size="$3,$(($4 + 121))" --screenshot="$raw" \
-    "file://$1" >/dev/null 2>&1 || true
+    "file://$1" >/dev/null 2>&1 &
+  local pid=$! size=0 last=-1
+  for _ in $(seq 1 180); do
+    sleep 0.5
+    size=$(stat -c %s "$raw" 2>/dev/null || echo 0)
+    if [[ "$size" -gt 0 && "$size" == "$last" ]]; then break; fi
+    last=$size
+    kill -0 "$pid" 2>/dev/null || break
+  done
+  kill "$pid" 2>/dev/null || true
+  wait "$pid" 2>/dev/null || true
   [[ -s "$raw" ]] || fail "no screenshot for $1" "open $1 in a browser to check it loads, then rerun" 4
   convert "$raw" -crop "${3}x${4}+0+0" +repage "$2"
   rm -f "$raw"
@@ -93,7 +94,7 @@ done
 
 # 3. Plates.
 cp "$art"/shots/*.png "$work/img/"
-cp "$art/plates/sysmon-gpu.json" "$work/sysmon-gpu.json"
+rm -f "$work"/html/*.html "$work"/png/*.png
 ART_WORK="$work" python3 "$art/plates/plates.py" >/dev/null
 
 # 4. Screenshots, in parallel.
@@ -108,6 +109,7 @@ for pid in "${pids[@]}"; do
 done
 
 # 5. Encode. Plates are photographic: high-quality JPEG keeps the page light.
+rm -f "$out"/0[0-6]-*.jpg
 for f in "$work"/png/*.png; do
   b="$(basename "$f" .png)"
   convert "$f" -strip -sampling-factor 4:4:4 -quality 90 "$out/$b.jpg"
