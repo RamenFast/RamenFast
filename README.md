@@ -5,7 +5,7 @@
 <p align="center">
   <b>Ben · RamenFast</b><br>
   Eyes that see and ears that hear, for agents and people alike.<br>
-  <sub>Senior vibe systems architect (Google) · Linux · Rust · Kotlin · Zig · GPLv3 by default</sub>
+  <sub>Senior vibe systems architect · Linux · Rust · Kotlin · Zig · GPLv3 by default</sub>
 </p>
 
 The name above is a two-second stereo file, [`ramenfast.wav`](assets/ramenfast.wav), drawn by [phosphor](https://github.com/RamenFast/phosphor).
